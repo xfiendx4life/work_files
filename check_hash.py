@@ -21,8 +21,10 @@ def get_hash_md5(filename):
 def get_text(filename):
 	with open(filename, encoding = "latin-1" ) as f:#!!!
 		data = f.read()
-
 	return data
+
+def normalize(text):
+	return text.lower()
 
 def similar(a, b):
     return SequenceMatcher(None, a, b).ratio()
@@ -45,8 +47,12 @@ if var == '-h':
 				print("_______________________________")
 elif var == '-d':
 	for item in fileList:
-		textList.append(get_text(item))
+		textList.append(normalize(get_text(item)))
 	for i in range(len(textList)):
 		for j in range(i + 1, len(textList)):
-			print(similar(textList[i],textList[j]))
+			sim = similar(textList[i],textList[j])
+			#print(sim)
+			if sim >= 0.5:
 
+				print(fileList[i] + '\n' + fileList[j] + '\n' + '--------%s' % sim)
+				print("_______________________________")
