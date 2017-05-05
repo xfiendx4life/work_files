@@ -32,7 +32,7 @@ def similar(a, b):
 try:
 	p = sys.argv[1]
 	var = sys.argv[2]
-	perc = int(sys.argv[3])
+	
 
 	for path, subdirs, files in os.walk(p):
 		for filename in files:
@@ -48,6 +48,7 @@ try:
 					print(fileList[i] + '\n' + fileList[j])
 					print("_______________________________")
 	elif var == '-t':
+		perc = int(sys.argv[3])
 		for item in fileList:
 			textList.append(normalize(get_text(item)))
 		for i in range(len(textList)):
